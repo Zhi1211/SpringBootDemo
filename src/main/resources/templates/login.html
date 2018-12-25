@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>  
+<body>
+<button class="btn btn-warning homeBtn" onclick="window.location.href='/'">首頁</button>
+	<div class="content" style="">
+		<h3 class="formTitle">會員登入</h3>
+		<div class="col-lg-3">
+			<form id="login" action="" method="POST" style="border:0px solid black">	
+					<div class="form-group theForm">
+						<label for="account">帳號：</label>
+						<input class="form-control" id="account" type="text" name="account">
+					</div>
+					<div class="form-group">
+						<label for="password">密碼：</label>
+						<input class="form-control" id="password" type="password" name="password">
+					</div>
+				<input class="btn btn-primary" type="button" onclick="submitLogin()" value="提交"></button>	
+			</form>
+		</div>
+	</div>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script>
+function submitLogin(){
+	let errorMsg = "";
+	if(!($('#account').val().trim())){
+		errorMsg = "帳號不得為空\n";
+	}
+	if(!($('#password').val().trim())){
+		errorMsg += "密碼不得為空\n";
+	}
+	if(errorMsg){
+		alert(errorMsg);
+		return false;
+	}
+	$.ajax({
+		  type:"POST", 
+		  cache: false,
+		  url: "login",
+		  data: $('#login').serialize(), 
+		  datatype: 'json',
+		  success: function(data) {   
+			if(data ==="登入成功！"){
+				alert(data);
+				window.location.href="/users";
+			}else{
+				alert(data);
+				$('#account').val("");
+				$('#password').val("");
+			}  			
+		  },
+		  error: function() {
+			alert('error') 
+		  },
+		});		
+}		
+</script>	
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

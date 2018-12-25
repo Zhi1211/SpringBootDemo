@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+	<button class="btn btn-warning homeBtn" onclick="window.location.href='/'">首頁</button>
+	<div class="content">
+		<h3 class="formTitle">會員註冊</h3>
+		<div class="col-lg-3">
+			<form id="reg"  action="" method="POST">
+				<div class="form-group">
+					<label for="account">帳號：</label>
+					<input id="account" class="form-control" type="text" name="account"></input>
+				</div>  
+				<div class="form-group">
+					<label for="password">密碼：</label>
+					<input id="password" class="form-control"  type="password" name="password"></input>
+				</div>
+				<div class="form-group">
+					<label for="gender">性別：</label>
+					<input id="male" type="radio"  name="gender" value="male">男性</input>
+					<input id="female" type="radio"  name="gender" value="female">女性</input>
+				</div>
+				<div class="form-group">
+					<label for="birthday">生日：</label>
+					<input name="birthday" id="birthday" type="date">
+				</div>
+				<input type="button" class="btn btn-primary" onclick="submitReg()" value="提交"></button>
+			</form>
+		</div>
+	</div>
+
+
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>		
+<script th:src="@{/js/bootstrap.min.js}"></script>		
+<script th:src="@{/js/check.js}"></script>
+<script>
+let leap = false;
+function submitReg(){
+	let errorMsg="" ;
+	const account = $('#account').val().trim();
+	const password = $('#password').val().trim();
+	const gender = $("input[name=gender]:checked").val();
+	errorMsg += checkAccount(account);
+	errorMsg += checkPassword(password);
+	errorMsg += checkGender(gender);
+	errorMsg += checkBirthday(birthday);
+	console.log(birthday)
+	if(errorMsg){
+		alert(errorMsg);
+		return false;
+	}
+	$.ajax({
+		  type:"POST", 
+		  cache: false,
+		  url: "submit",
+		  data: $('#reg').serialize(), 
+		  datatype: 'json',
+		  success: function(data) {
+			 if(data === "註冊成功！") {
+				alert(data);
+				window.location.href="/"; 				 
+			 }else{
+				 alert(data);
+				 $('#password').val("");
+			 }
+		  },
+		  error: function() {
+
+		  },
+		});		
+}
+</script>
+</body>
+</html>

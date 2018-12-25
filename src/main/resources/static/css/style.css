@@ -1,0 +1,63 @@
+.content {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+button {
+	background-color: white;
+	outline:none;  
+}
+#buttons {
+	
+}
+.mainBtn {
+	width:100px;  
+	height:40px;
+	margin:5px;
+	box-shadow: 1px 1px 3px black;
+}
+.mainBtn:hover {
+	box-shadow: 1px 1px 1px black inset; 
+	outline:none;    
+}    
+.title {
+	font-family: 'ZCOOL XiaoWei', serif;	
+	margin-top: 250px;
+	flex-basis: 1000px;
+	text-align: center;
+}
+.formTitle {
+	margin-top: 150px;
+	flex-basis: 1500px;
+	text-align: center;
+}
+.hidden {
+	display: none; 
+}
+.display {
+	display: block;
+}
+#msg {  
+	margin-left: 265px;
+	font-size: 10px;
+	color: red;
+}
+#footer {
+	background-color:black;
+	width: 100vw;
+	height:20px;
+}
+.homeBtn {
+	margin: 10px;
+}
+#tableTitle {
+	margin-top: 25px;
+	flex-basis: 1500px;
+	text-align: center;
+}
+#userList {
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 10px;
+	maring-bottom: 100px;
+	border-radius: 10px;
+}

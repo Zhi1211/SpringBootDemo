@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Users</title>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body> 
+<button class="btn btn-warning homeBtn" onclick="window.location.href='/'">首頁</button>
+	<div class="content" >
+		<h3 th:text="| Hello！${session.LoginOK.account}|" id="tableTitle">Hello，${session.LoginOK.account}</h3>
+		<div class="col-lg-5" id="userList">
+			<table border="3" class="table">
+				<tr>
+					<th></th>
+					<th>帳號</th>
+					<th>密碼</th>
+					<th>性別</th>
+					<th>生日</th>
+				</tr>		 
+				<tr th:each="user ,iterStat : ${ users }">
+					<td th:text="${iterStat.count}" />
+					<td th:text="${user.account}" />
+					<td th:text="${user.password}" />
+					<td th:text="${user.gender}" />
+					<td th:text="${user.birthday}" /> 
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
